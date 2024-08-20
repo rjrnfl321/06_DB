@@ -84,10 +84,10 @@
 			"name": "TEST계정",
 			"save-password": true,
 			"configuration": {
-				"host": "kh-1.xyz",
+				"host": "khj-1.xyz",
 				"port": "10000",
 				"database": "XE",
-				"url": "jdbc:oracle:thin:@//kh-1.xyz:10000/XE",
+				"url": "jdbc:oracle:thin:@//khj-1.xyz:10000/XE",
 				"configurationType": "MANUAL",
 				"home": "C:\\app\\user1\\product\\18.0.0\\dbhomeXE",
 				"type": "dev",
