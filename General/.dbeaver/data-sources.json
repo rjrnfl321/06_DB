@@ -114,7 +114,14 @@
 					"@dbeaver-sid-service@": "SERVICE"
 				},
 				"auth-model": "oracle_native"
-			}
+			},
+			"filters": [
+				{
+					"type": "org.jkiss.dbeaver.ext.oracle.model.OracleSchema",
+					"enabled": true,
+					"include": ["TEST_USER"]
+				}
+			]
 		},
 		"oracle_thin-1916d4760ce-21c69c42b3001c10": {
 			"provider": "oracle",
@@ -150,7 +157,7 @@
 			"name": "Development",
 			"color": "255,255,255",
 			"description": "Regular development database",
-			"auto-commit": true,
+			"auto-commit": false,
 			"confirm-execute": false,
 			"confirm-data-change": false,
 			"smart-commit": false,
