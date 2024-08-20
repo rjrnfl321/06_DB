@@ -11,7 +11,7 @@
 -- 이름, 부서코드 조회하기
 
 -- 1) 사원명이 노옹철인 사람의 부서코드 조회
-SELECT DEPT_CODE
+SELECT DEPT_CODE 
 FROM EMPLOYEE
 WHERE EMP_NAME = '노옹철'; -- 'D9'
 
