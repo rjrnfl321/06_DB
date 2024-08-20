@@ -27,6 +27,7 @@
 			"driver": "oracle_thin",
 			"name": "KH_KJW(KH1234)",
 			"save-password": true,
+			"show-system-objects": true,
 			"configuration": {
 				"host": "khj-1.xyz",
 				"port": "10000",
