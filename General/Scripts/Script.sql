@@ -21,10 +21,8 @@ SELECT
 	GRADE_NAME 등급명
 FROM
 	TB_MEMBER
-JOIN TB_GRADE ON
-	(GRADE = GRADE_CODE)
-JOIN TB_AREA
-		USING (AREA_CODE)
+JOIN TB_GRADE ON (GRADE = GRADE_CODE)
+JOIN TB_AREA USING (AREA_CODE)
 	-- 문제원인 1 : 8번째 TB_AREA를 JOIN하는 구문에서
 	--           ON(AREA_CODE = AREA_CODE)로 작성되어
 	--           컬럼명이 같아 어떤 테이블의 컬럼인지 구분되지 않는 문제가 발생
@@ -32,12 +30,9 @@ JOIN TB_AREA
 	--                 (AREA_CODE = AREA_CODE) -> USING (AREA_CODE)
 WHERE
 	AREA_CODE = (
-	SELECT
-		AREA_CODE
-	FROM
-		TB_MEMBER
-	WHERE
-		MEMBER_NAME = '김영희')
+	SELECT AREA_CODE
+	FROM TB_MEMBER
+	WHERE MEMBER_NAME = '김영희')
 	-- 문제원인 2 : 서브쿼리의 WHERE절에 '이름'이라는 별칭이 작성되어
 	--                         SELECT가 정상 수행되지 않음
 	-- 해결방법 2 : 서브쿼리의 '이름' 별칭을 컬럼명인 MEMBER_NAME으로 변경
