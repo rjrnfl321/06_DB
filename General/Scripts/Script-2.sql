@@ -19,7 +19,7 @@ ORDER BY 이름 ASC;
 
 -- JOIN : 같은 값을 가진 컬럼을 연결함 
 
-/* TB_MEMEBR 와 TB_AREA 조인 (ON 사용)
+/* TB_MEMBER 와 TB_AREA 조인 (ON 사용)
 MEMBER_ID 	MEMBER_PWD 	MEMBER_NAME 	GRADE 	AREA_CODE | AREA_CODE	AREA_NAME
 hong01			pass01			홍길동					10			02				|	02					서울	
 leess99			pass02			이순신					10			032				| 032					인천
@@ -32,7 +32,7 @@ kyh9876			pass07			김영희					20			031				| 031         경기
  * */
 
 
-/* TB_MEMEBR 와 TB_AREA 조인 (USING 사용)
+/* TB_MEMBER 와 TB_AREA 조인 (USING 사용)
 MEMBER_ID 	MEMBER_PWD 	MEMBER_NAME 	GRADE |	AREA_CODE |	AREA_NAME
 hong01			pass01			홍길동					10		|	02				|		서울	
 leess99			pass02			이순신					10		|	032				|		인천
