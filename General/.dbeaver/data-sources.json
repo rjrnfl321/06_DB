@@ -25,7 +25,7 @@
 		"oracle_thin-1914e8955f2-2fca0ef233ef5db6": {
 			"provider": "oracle",
 			"driver": "oracle_thin",
-			"name": "KH_KJW(KH1234)",
+			"name": "KH_KJW(KH1234)_학원서버",
 			"save-password": true,
 			"show-system-objects": true,
 			"configuration": {
@@ -149,6 +149,35 @@
 					"type": "org.jkiss.dbeaver.ext.oracle.model.OracleSchema",
 					"enabled": true,
 					"include": ["KH_COMMON"]
+				}
+			]
+		},
+		"oracle_thin-1917de42305-7463faf041d841c8": {
+			"provider": "oracle",
+			"driver": "oracle_thin",
+			"name": "KH_KJW(KH1234)_로컬",
+			"save-password": true,
+			"show-system-objects": true,
+			"configuration": {
+				"host": "localhost",
+				"port": "1521",
+				"database": "XE",
+				"url": "jdbc:oracle:thin:@//localhost:1521/XE",
+				"configurationType": "MANUAL",
+				"home": "C:\\app\\user1\\product\\18.0.0\\dbhomeXE",
+				"type": "dev",
+				"closeIdleConnection": true,
+				"provider-properties": {
+					"@dbeaver-connection-type@": "BASIC",
+					"@dbeaver-sid-service@": "SERVICE"
+				},
+				"auth-model": "oracle_native"
+			},
+			"filters": [
+				{
+					"type": "org.jkiss.dbeaver.ext.oracle.model.OracleSchema",
+					"enabled": true,
+					"include": ["KH_KJW"]
 				}
 			]
 		}

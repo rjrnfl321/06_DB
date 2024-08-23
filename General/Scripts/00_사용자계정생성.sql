@@ -3,7 +3,7 @@
 
 -- SQL 한 줄 실행 : ctrl + Enter 
 
-/* SYS 관리자 계정으로 수행하*/
+/* SYS 관리자 계정으로 수행하기 */
 ALTER SESSION SET "_ORACLE_SCRIPT" = TRUE;
 
 CREATE USER KH_KJW IDENTIFIED BY KH1234;

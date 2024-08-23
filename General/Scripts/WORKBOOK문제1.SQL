@@ -17,6 +17,34 @@ FROM TB_DEPARTMENT;
 -- "국어국문학과"에 다니는 여학생 중 현재 휴학중인 여학생을 조회
 -- (국문학과의 학과코드(DEPARTMENT_NO)는 001)
 
+SELECT STUDENT_NAME "이름", 
+			 STUDENT_SSN "주민등록번호",
+			 ABSENCE_YN "휴학 여부 ",
+			 DEPARTMENT_NO "학과번호"
+FROM TB_STUDENT     
+WHERE SUBSTR (STUDENT_SSN, 8, 1) = '2' 
+-- WHERE SUBSTR (STUDENT_SSN, 8, 1) = '2'
+-- 'STUDENT_SSN 필드의 8번째 문자가 2인 레코드를 선택하는 조건'
+AND ABSENCE_YN = 'Y'
+AND DEPARTMENT_NO = '001';
+----------------------------------------------------
+/* SUBSTR : 컬럼 또는 문자열에서 지정한 위치부터
+ *          지정한 개수의 문자열을 잘라내어 반환
+ * 
+ * AND    : 여러 조건이 동시에 TRUE일 경우에 TRUE 값 반환
+ * 
+ * AND ABSENCE_YN = 'Y'
+	 AND DEPARTMENT_NO = '001';
+ * - 현재 휴학중인 여학생이면서 학과번호가 '001'인 
+ * 
+ * */ 
+----------------------------------------------------
+
+
+
+
+
+
 
 -- 4번
 -- 도서관에서 대출 도서 장기 연체자들을 찾아 이름을 게시하고자 한다.
