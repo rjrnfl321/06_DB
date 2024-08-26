@@ -80,6 +80,12 @@ SELECT PROFESSOR_NAME
 FROM TB_PROFESSOR
 WHERE DEPARTMENT_NO IS NULL; -- 임해정 
 
+-- IN NULL : 이 조건식은 열의 값이 NULL인지 확인
+-- 					 즉 열의 값이 NULL이면 조건이 참으로 평가됨
+-- NULL    : 값이 없는 상태를 의미함
+
+-- DEPARTMENT_NO IS NULL을 사용하는 쿼리는
+-- DEPARTMENT_NO(학과번호)가 NULL인 사람을 찾음
 
 
 ----------------------------------------------------------------------
@@ -88,15 +94,38 @@ WHERE DEPARTMENT_NO IS NULL; -- 임해정
 -- 선수과목이 존재하는 과목들은 어떤 과목인지 과목 번호를 조회
 
 SELECT CLASS_NO
-FROM TB_CLASS;
-WHERE PREATTENDING_CLASS_NO 
+FROM TB_CLASS
+WHERE PREATTENDING_CLASS_NO IS NOT NULL;
+
+-- IS NOT NULL : 이 조건식은 열의 값이 NULL이 아닌지 확인
+-- 							 즉 열의 값이 NULL이 아니면 조건이 참으로 평가
+
+/* PRATTENDING_CLASS_NO IS NOT NULL을 사용하는 쿼리는
+ * PRATTENDING_CLASS_NO가 NULL이 아닌 사람을 찾음
+ * */ 
+
+/* 1. TB_CLASS인 테이블을 조회
+ * 2. CLASS_NO(과목번호) 컬럼중
+ * 3. 조회하려는 행은 PREATTENDING_CLASS_NO(선수과목번호)
+ *    조건식은 IS NOT NULL   */
+
+-------------------------------------------------------------
 
 
 
 -- 8번
--- 춘 대학에는 어떤 계열(CATEGORY)들이 있는지 조회
+-- 춘 대학에는 어떤 계열(CATEGORY)들이 있는지 오름차순으로 조회
 
 SELECT DISTINCT CATEGORY
 FROM TB_DEPARTMENT
 ORDER BY 1 ASC;
+
+-- ORDER BY 1 ASC : 결과를 정렬할 때 사용
+--								  '1' 컬럼의 위치를 나타냄 -> CATEGORY
+--   								ASC : 오름차순
+
+/* 1. TB_DEPARTMENT인 테이블을 조회
+ * 2. CATEGORY(계열) 컬럼중 DISTINCT(중복없이 유일한 값)들만 추출하고
+ * 3. 그 결과를 오름차순으로 정렬
+ * */ 
  
