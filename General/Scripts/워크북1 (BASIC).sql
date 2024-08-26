@@ -61,8 +61,8 @@ WHERE CAPACITY BETWEEN 20 AND 30;
 
 
 /* 1. TB_DEPARTMENT 테이블에서
- * 2. DEPARTMENT_NAME, CATEGORY 컬럼을 조회
- * 3. 조회하려는 행은 CAPACITY 조건식은 BETWEEN 20 AND 30
+ * 2. 조회하려는 행은 CAPACITY 조건식은 BETWEEN 20 AND 30
+ * 3. DEPARTMENT_NAME, CATEGORY 컬럼을 조회
  * 
  * 
  * - BETWEEN AND : 비교하려는 값이 지정 범위에 포함되면 TRUE를 리턴
@@ -105,9 +105,10 @@ WHERE PREATTENDING_CLASS_NO IS NOT NULL;
  * */ 
 
 /* 1. TB_CLASS인 테이블을 조회
- * 2. CLASS_NO(과목번호) 컬럼중
- * 3. 조회하려는 행은 PREATTENDING_CLASS_NO(선수과목번호)
- *    조건식은 IS NOT NULL   */
+ * 2. 조회하려는 행은 PREATTENDING_CLASS_NO(선수과목번호)
+ *    조건식은 IS NOT NULL   
+ * 3. CLASS_NO(과목번호) 컬럼중 */
+
 
 -------------------------------------------------------------
 
