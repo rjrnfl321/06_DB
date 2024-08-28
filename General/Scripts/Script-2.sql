@@ -64,5 +64,63 @@ ROLLBACK;
 -- 아이디, 비밀번호 불일치 -> 수정 실패 (0)
 
 
+-- 모든 USER 조회
+
+SELECT
+	USER_NO,
+	USER_ID,
+	USER_PW,
+	USER_NAME,
+	TO_CHAR(ENROLL_DATE, 'YYYY"년" MM"월" DD"일"') 
+					ENROLL_DATE
+FROM TB_USER
+WHERE USER_NO LIKE '%' || ? || '%' 
+ORDER BY USER_NO ASC;
+ --------------------------------------------
+
+SELECT 
+				USER_NO,
+				USER_ID,
+				USER_PW,
+				USER_NAME,
+				TO_CHAR(ENROLL_DATE, 'YYYY"년" MM"월" DD"일"') 
+					ENROLL_DATE
+			FROM TB_USER
+			WHERE USER_NO = ?;
+
+-- USER_NO를 입력 받아 일치하는 User 삭제(DELETE)
+
+DELETE 
+FROM TB_USER
+WHERE USER_NO = ?;
+-- 일치하는 USER_NO가 있을 경우 : 1행 삭제
+-- 일치하는 USER_NO가 없을 경우 : 0행 삭제
+
+ROLLBACK;
+
+-- ID,PW 가 일치하는 회원의 USER_NO(PK) 조회
+SELECT * 
+FROM TB_USER;
+
+WHERE USER_ID = 'user03'
+AND   USER_PW = 'pass03';
+
+-- ID,PW 가 일치하는 회원의 이름을 수정
+UPDATE TB_USER
+SET 
+	USER_NAME = '이순신 장군'
+WHERE USER_NO = 4;
+
+ROLLBACK;
+
+-- 중복되는 아이디가 있는지 조회
+SELECT * 
+FROM TB_USER
+WHERE USER_ID = 'user02';
+			
+			
+			
+			
+
 SELECT * FROM TB_USER;
 
