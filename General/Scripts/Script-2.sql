@@ -1,126 +1,60 @@
-SELECT
-		 EMP_ID, EMP_NAME, DEPT_CODE, JOB_CODE, SALARY, HIRE_DATE 
-FROM EMPLOYEE;
+-- 다음 요구사항을 충족할 수 있도록 SQL문을 작성하고 실행하였지만, 실패하거나 일부가 요구사항에 맞게 작성되지 않았다.
+-- SQL문을 분석하여 원인과 조치내용을 작성하시오.
 
--- 입력 받은 급여보다 초과해서 받는 사원의
--- 사번, 이름, 급여 조회
-SELECT EMP_NAME,EMP_ID,SALARY
-FROM EMPLOYEE
-WHERE SALARY > 4000000;
-
--- 부서명을 입력 받아
--- 해당 부서에 근무하는 사원의
---  사번, 이름, 부서명, 직급명을
---  직급코드 오름차순으로 조회
-
-SELECT EMP_ID,EMP_NAME,
-			 NVL(DEPT_TITLE,'없음') DEPT_TITLE,JOB_NAME
-FROM EMPLOYEE
-JOIN JOB USING (JOB_CODE)
-LEFT JOIN DEPARTMENT ON (DEPT_CODE = DEPT_ID)
-WHERE DEPT_TITLE = '총무부'
-ORDER BY JOB_CODE ASC;
-
-
-
--- TB USER 테이블 생성
-CREATE TABLE TB_USER(
-	 USER_NO NUMBER CONSTRAINT TB_USER_PK PRIMARY KEY,
-	 USER_ID VARCHAR2(30) NOT NULL,
-	 USER_PW VARCHAR2(30) NOT NULL,
-	 USER_NAME VARCHAR2(30) NOT NULL,
-	 ENROLL_DATE DATE DEFAULT CURRENT_DATE
-	 
+CREATE TABLE MEMBERS (
+		
+		MEMBER_ID VARCHAR2 (20),
+		MEMBER_PWD VARCHAR2 (20) NOT NULL,
+		MEMBER_NAME VARCHAR2 (30),
+		MEMBER_AGE NUMBER(3),
+		MEMBER_EMAIL VARCHAR2(50),
+		CONSTRAINT MEMBER_ID_PK PRIMARY KEY(MEMBER_ID)
+	
+		
 );
 
-COMMENT ON COLUMN TB_USER.USER_NO IS '사용자 번호';
-COMMENT ON COLUMN TB_USER.USER_ID IS '사용자 아이디';
-COMMENT ON COLUMN TB_USER.USER_PW IS '사용자 비밀번호';
-COMMENT ON COLUMN TB_USER.USER_NAME IS '사용자 이름';
-COMMENT ON COLUMN TB_USER.ENROLL_DATE IS '사용자 가입일';
+DROP TABLE MEMBERS;
+
+SELECT * FROM MEMBERS;
+
+INSERT INTO MEMBERS 
+VALUES ('user01','pass01','지호','20','jiho@kh.or.kr');
+
+-- 원인 1. PRIMARY KEY 제약조건을 작성하는 구문에서
+--        식별하기위한 제약조건이 올바르게 작성되지않음
+
+-- 해결 1. 테이블 레벌을 올바르게 설정함
+--        CONSTRAINT MEMBER_ID_PK PRIMARY KEY(MEMBER_ID)
+
+-- 원인 2. 작성된 MEMBER_NAME의 데이터 타입이 CHAR이기때문에
+--        실제입력되는 값보다 짧아도 공백으로 채우게됨
+
+-- 해결 2. 데이터 타입을 VARCHAR2로 요구사항에 맞게 수정 
+					
+----------------------------------------------------------------------------------------------
 
 
--- USER_NO 컬럼에 삽입될 시퀀스 생성
-CREATE SEQUENCE SEQ_USER_NO NOCACHE;
 
--- 샘플 데이터 INSERT
-INSERT INTO TB_USER
-VALUES(SEQ_USER_NO.NEXTVAL, 'user01','pass01','유저일',DEFAULT);
-
-SELECT * FROM TB_USER;
-
-COMMIT;
-
-
-
-UPDATE TB_USER
-SET USER_NAME = '홍길동'
-WHERE USER_ID = 'user01'
-AND USER_PW = 'pass01';
-
-ROLLBACK;
-
--- 아이디, 비밀번호 일치 -> 수정 성공 (1)
--- 아이디, 비밀번호 불일치 -> 수정 실패 (0)
+CREATE TABLE BOARDS(
+		BOARD_NO NUMBER PRIMARY KEY,
+		BOARD_TITLE VARCHAR2(100),
+		BOARD_CONTENT VARCHAR2(4000),
+		BOARD_WRITER VARCHAR2(20),
+		BOARD_REG_DATE DATE DEFAULT SYSDATE,
+		
+		CONSTRAINT FK_BOARD_WRITER FOREIGN KEY (BOARD_WRITER) REFERENCES MEMBERS(MEMBER_ID)
+);
 
 
--- 모든 USER 조회
+-- 원인 1. BOARD_WRITER 컬럼에
+--        FOREIGN KEY 제약조건 설정방식이 잘못됨
+--        CONSTRAINT를 통해 명시가 되지않음
+--        REFERENCES를 사용하여 참조할 테이블과 컬럼지정 X   
 
-SELECT
-	USER_NO,
-	USER_ID,
-	USER_PW,
-	USER_NAME,
-	TO_CHAR(ENROLL_DATE, 'YYYY"년" MM"월" DD"일"') 
-					ENROLL_DATE
-FROM TB_USER
-WHERE USER_NO LIKE '%' || ? || '%' 
-ORDER BY USER_NO ASC;
- --------------------------------------------
+-- 해결 1. 테이블 레벨에 맞는 설정방식을 올바르게 작성함 
+--        CONSTRAINT FK_BOARD_WRITER FOREIGN KEY (BOARD_WRITER) REFERENCES MEMBERS(MEMBER_ID)
 
-SELECT 
-				USER_NO,
-				USER_ID,
-				USER_PW,
-				USER_NAME,
-				TO_CHAR(ENROLL_DATE, 'YYYY"년" MM"월" DD"일"') 
-					ENROLL_DATE
-			FROM TB_USER
-			WHERE USER_NO = ?;
 
--- USER_NO를 입력 받아 일치하는 User 삭제(DELETE)
+-- 원인 2. BOARD_REG_DATE 컬럼에 입력된 현재시간은 문자열로 이루어져있어서 잘못 작성됨
 
-DELETE 
-FROM TB_USER
-WHERE USER_NO = ?;
--- 일치하는 USER_NO가 있을 경우 : 1행 삭제
--- 일치하는 USER_NO가 없을 경우 : 0행 삭제
-
-ROLLBACK;
-
--- ID,PW 가 일치하는 회원의 USER_NO(PK) 조회
-SELECT * 
-FROM TB_USER;
-
-WHERE USER_ID = 'user03'
-AND   USER_PW = 'pass03';
-
--- ID,PW 가 일치하는 회원의 이름을 수정
-UPDATE TB_USER
-SET 
-	USER_NAME = '이순신 장군'
-WHERE USER_NO = 4;
-
-ROLLBACK;
-
--- 중복되는 아이디가 있는지 조회
-SELECT * 
-FROM TB_USER
-WHERE USER_ID = 'user02';
-			
-			
-			
-			
-
-SELECT * FROM TB_USER;
-
+-- 해결 2. 시스템에 저장되있는 현재 날짜를 반환하는 함수를 사용 SYSDATE
