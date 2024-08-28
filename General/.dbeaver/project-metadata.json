@@ -1,1 +1,1 @@
-{"resources":{"Scripts/Script-1.sql":{"default-datasource":"oracle_thin-19169c7443d-28904a1ab6377e66","default-schema":"TEST_USER"},"Scripts/Script-2.sql":{"default-datasource":"oracle_thin-1916d4760ce-21c69c42b3001c10","default-schema":"KH_COMMON"},"Scripts/Script.sql":{"default-datasource":"oracle_thin-1915a0383b2-3026ecee89fba86","default-schema":"WORKBOOK"}}}
+{"resources":{"Scripts/자습1.sql":{"default-schema":"KH_COMMON","default-datasource":"oracle_thin-1916d4760ce-21c69c42b3001c10"}}}
