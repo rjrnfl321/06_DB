@@ -114,7 +114,8 @@ WHERE USER_NO = 4;
 ROLLBACK;
 
 -- 중복되는 아이디가 있는지 조회
-SELECT * 
+-- 중복이면 1, 아니면 0 
+SELECT COUNT(*) 
 FROM TB_USER
 WHERE USER_ID = 'user02';
 			
