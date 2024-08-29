@@ -1,0 +1,99 @@
+-- 다음 요구사항을 충족할 수 있도록 SQL문을 작성하고 실행하였지만
+-- 실패하거나 일부가 요구사항에 맞게 작성되지 않았다.
+-- SQL문을 분석하여 원인과 조치내용을 작성하시오.
+
+
+/* 
+- MEMBERS 테이블 
+
+1) MEMBER_ID 컬럼에 PRIMARY KEY 제약조건 설정.
+
+2) MEMBER_PWD 컬럼에 NOT NULL 제약조건 설정.
+
+3) MEMBER_EMAIL 컬럼에 MEM_EMAIL_UNQ 제약조건명을 가진 UNIQUE 제약조건 설정.
+
+*/
+CREATE TABLE MEMBERS(
+
+MEMBER_ID VARCHAR2(20) CONSTRAINT MEMBER_ID_PK PRIMARY KEY,
+
+MEMBER_PWD VARCHAR2(20) NOT NULL,
+
+MEMBER_NAME VARCHAR2(30),
+
+MEMBER_AGE NUMBER,
+
+MEMBER_EMAIL VARCHAR2(50),
+
+CONSTRAINT MEMBER_EMAIL_U UNIQUE(MEMBER_EMAIL)
+
+);
+
+
+DROP TABLE MEMBERS CASCADE CONSTRAINT;
+DROP TABLE BOARDS CASCADE CONSTRAINT;
+
+INSERT INTO MEMBERS
+VALUES ('user02','pass02','지원','23','jiwon@kh.or.kr');
+
+
+SELECT * FROM MEMBERS;
+
+-----------------------------------------------------------------
+
+
+-----------------------------------------------------------------
+
+
+
+
+/*
+
+- BOARDS 테이블 
+
+1) BOARD_NO 컬럼에 PRIMARY KEY 제약조건 설정. O
+
+2) BOARD_WRITER 컬럼에 MEMERS 테이블의 MEMBER_ID를 참조하는
+	 FOREIGN KEY 제약조건을 설정하되 부모 테이블 데이터 삭제 시 참조하고 있는 자식 테이블의 데이터도 삭제하는 옵션 추가.
+
+3) BOARD_REG_DATE(작성일) 컬럼에 기본값 SYSDATE 설정
+ 
+*/
+
+CREATE TABLE BOARDS(
+
+BOARD_NO NUMBER PRIMARY KEY,
+
+BOARD_TITLE VARCHAR2(100),
+
+BOARD_CONTENT VARCHAR2(4000),
+
+--BOARD_WRITER VARCHAR2(20) FOREIGN KEY (BOARD_WRITER) REFERENCES MEMBERS(MEMBER_ID) 
+--							DELETE ON CASCADE,
+BOARD_WRITER VARCHAR2(20) REFERENCES MEMBERS(MEMBER_ID) ON DELETE CASCADE,
+
+
+BOARD_REG_DATE DATE DEFAULT SYSDATE
+
+
+
+);
+DROP TABLE MEMBERS CASCADE CONSTRAINT;
+DROP TABLE BOARDS CASCADE CONSTRAINT;
+
+
+
+SELECT * FROM BOARDS;
+
+
+
+
+
+
+
+
+
+
+
+
+

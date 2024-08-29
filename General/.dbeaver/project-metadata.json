@@ -1,5 +1,1 @@
-<<<<<<< HEAD
-{"resources":{"Scripts/자습1.sql":{"default-schema":"KH_COMMON","default-datasource":"oracle_thin-1916d4760ce-21c69c42b3001c10"}}}
-=======
-{"resources":{"Scripts/08_DDL(CREATE).sql":{"default-datasource":"oracle_thin-1914e74b087-46d7c06e6b4f0edc","default-schema":"SYS"},"Scripts/11_DCL.sql":{"default-datasource":"oracle_thin-1917de42305-7463faf041d841c8","default-schema":"KH_KJW"},"Scripts/Script-2.sql":{"default-datasource":"oracle_thin-1917de42305-7463faf041d841c8","default-schema":"KH_KJW"}}}
->>>>>>> origin/main
+{"resources":{"Scripts/08_DDL(CREATE).sql":{"default-datasource":"oracle_thin-1914e74b087-46d7c06e6b4f0edc","default-schema":"SYS"},"Scripts/Script-2.sql":{"default-datasource":"oracle_thin-1917de42305-7463faf041d841c8","default-schema":"KH_KJW"},"Scripts/Script.sql":{"default-datasource":"oracle_thin-19169c7443d-28904a1ab6377e66","default-schema":"TEST_USER"},"Scripts/자습1.sql":{"default-datasource":"oracle_thin-1917de42305-7463faf041d841c8","default-schema":"KH_KJW"}}}
